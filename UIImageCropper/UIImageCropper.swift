@@ -250,6 +250,12 @@ public class UIImageCropper: UIViewController, UIImagePickerControllerDelegate, 
     
     @objc func cropCancel() {
         presenting = false
+        
+        if let callback = delegate?.didCancel {
+            callback()
+            return
+        }
+        
         if picker == nil {
             self.dismiss(animated: true, completion: nil)
         } else {
